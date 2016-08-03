@@ -1,8 +1,3 @@
-# es6-monads
-Playing around with the monads `Maybe` and `Either` and their functors `Just`, `Nothing`, `Left` and `Right`. This might help to prevent bugs during runtime. As some of you might already guess, this is inspired by Erlang and Elm ;)
-
-### Playing around with it:
-```javascript
 // Using require instead of import, because it is supported in
 // my atom editor with the script plugin, which allows me
 // to simply press cmd i to run all of this without babel etc
@@ -34,7 +29,3 @@ const try2 =
 // And here we can simply use Either to pick the valid one
 // Either returns the Left or Right functor which both have the .value method
 const result = Either(try1, try2).value()  // 'The value is 12!'
-
-```
-
-I would love feedback! Please tell me if I'm not correctly understanding this stuff by writing an issue or sending me a [tweet @KimHogeling](https://twitter.com/KimHogeling)
