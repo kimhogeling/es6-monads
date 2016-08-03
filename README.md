@@ -1,7 +1,7 @@
 # es6-monads
 Maybe, Just, Nothing and Either, Left, Right
 
-This helps to prevent bugs during runtime :)
+This helps to prevent bugs during runtime. Inspired by Elm ;)
 
 ### Playing around with it:
 ```javascript
