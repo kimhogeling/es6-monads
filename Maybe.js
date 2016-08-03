@@ -1,15 +1,22 @@
+const isSomething = a => (a !== null && a !== undefined && typeof a !== 'number') || (typeof a === 'number' && !isNaN(a))
+
+class Maybe {
+    constructor(a) {
+        return isSomething(a) ? new Just(a) : new Nothing()
+    }
+}
 
 class Just {
     constructor(a) {
-        this._value = a
+        this.val = a
     }
 
     value() {
-        return this._value
+        return this.val
     }
 
     fmap(fn) {
-        return new Just(fn(this._value))
+        return new Just(fn(this.val))
     }
 }
 
@@ -24,15 +31,6 @@ class Nothing {
 }
 
 
-class Maybe {
-    constructor(a) {
-        return (
-            (a !== null && a !== undefined && typeof a !== 'number')
-            || (typeof a === 'number' && !isNaN(a))
-        ) ? new Just(a) : new Nothing()
-    }
-}
-
 /**
  * Prevent the need of the `new` keyword
  *
@@ -40,6 +38,4 @@ class Maybe {
  */
 const _Maybe = a => new Maybe(a)
 
-// Export Just and Nothing too for unwrapping in Either.
-// Although, I'm not sure yet if I should even do the unwrapping..
 module.exports = _Maybe
