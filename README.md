@@ -1,7 +1,5 @@
 # es6-monads
-Maybe, Just, Nothing and Either, Left, Right
-
-This helps to prevent bugs during runtime. Inspired by Elm ;)
+Playing around with the monads `Maybe` and `Either` and their functors `Just`, `Nothing`, `Left` and `Right`. This might help to prevent bugs during runtime. As some of you might already guess, this is inspired by Erlang and Elm ;)
 
 ### Playing around with it:
 ```javascript
@@ -38,3 +36,5 @@ const try2 =
 Either(try1, try2).value()  // 'The value is 12!'
 
 ```
+
+I would love feedback! Please tell me if I'm not correctly understanding this stuff by writing an issue or sending me a [tweet @KimHogeling](https://twitter.com/KimHogeling)
