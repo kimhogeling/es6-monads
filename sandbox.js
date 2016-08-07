@@ -11,21 +11,23 @@ const double = a => a * 2
 const quarter = a => a / 4
 const pretty = a => `The value is ${a}!`
 
-// Imagine that because of some bug our array is broken,
-// but the code still runs fine, and simply uses the Nothing functor.
-// I called it .fmap instead of .map, to prevent confusion with Array.prototype.map.
-const try1 =
-    Maybe(times([1,2,'x',3,4])) // Nothing
-        .fmap(double) // Nothing
-        .fmap(quarter) // Nothing
-        .fmap(pretty) // Nothing
+// Composing the functions together
+const timesDoubleQuarterPretty = arr => 
+    Maybe(times(arr))
+        .fmap(double)
+        .fmap(quarter)
+        .fmap(pretty)
 
-const try2 =
-    Maybe(times([1,2,3,4])) // Just 24
-        .fmap(double) // Just 48
-        .fmap(quarter)  // Just 12
-        .fmap(pretty) // Just 'The value is 12!'
+// Imagine because of some bug our input array is broken,
+// but the code still runs fine, the Maybe returned a Nothing wrapper
+const broken = [1, 2, 'x', 3, 4]
+const result1 = timesDoubleQuarterPretty(broken) // Nothing
+
+// The second input array is intact and the Maybe returns a Just wrapper
+const intact = [1, 2, 3, 4]
+const result2 = timesDoubleQuarterPretty(intact) // Just 'The value is 12!'
 
 // And here we can simply use Either to pick the valid one
 // Either returns the Left or Right functor which both have the .value method
-const result = Either(try1, try2).value()  // 'The value is 12!'
+const result = Either(result1, result2) // Right 'The value is 12!'
+result.value() // 'The value is 12!'
